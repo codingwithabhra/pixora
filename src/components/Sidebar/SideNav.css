@@ -1,0 +1,77 @@
+/* Sidebar */
+.sideNav {
+    width: 260px;
+    min-height: 100vh;
+    padding: 1.5rem;
+
+    /* Glass Effect */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+
+    /* Optional shadow */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+
+    font-family: "Inter", sans-serif;
+}
+
+ul li{
+    list-style: none;
+}
+
+/* Logo */
+.sidenavLogo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2.5rem;
+}
+
+.sidenavLogo img {
+    width: 60px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.sidenavLogo h2 {
+    margin: 0;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+}
+
+/* Navigation Links */
+.navLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.navLinks a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 8px 16px;
+    border-radius: 12px;
+
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-weight: 500;
+
+    transition: all 0.25s ease;
+}
+
+.navLinks a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    transform: translateX(4px);
+}
+
+.navLinks a.active {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+}

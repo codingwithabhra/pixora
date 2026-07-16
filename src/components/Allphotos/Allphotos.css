@@ -1,0 +1,95 @@
+.displayAllimages .image {
+    border-radius: 5px;
+    background-color: #2d2d2d;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    display: block;
+    overflow: hidden;
+
+    &:before {
+        content: "";
+        position: absolute;
+        width: 104%;
+        height: 104%;
+        top: -2%;
+        left: -2%;
+        background: hsl(210, 80, 5);
+        opacity: 0;
+        transition: 300ms ease-in-out;
+        transition-property: opacity;
+        will-change: opacity;
+    }
+
+    .content {
+        opacity: 0;
+        transition: 300ms ease-in-out 100ms;
+        transition-property: transform opacity;
+        transform: translateY(15%);
+        will-change: transform;
+    }
+
+    &:hover {
+        cursor: pointer;
+
+        .content {
+            opacity: 1;
+            transform: translateY(0%);
+        }
+
+        &:before {
+            opacity: 0.6;
+        }
+    }
+}
+
+.displayAllimages .content {
+    color: white;
+    font-family: 'Quicksand', 'Helvetica Neue', Helvetica, sans-serif;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    .text {
+        padding: 20px;
+    }
+
+    .title {
+        margin: 0 0 10px 0;
+        font-weight: 300;
+        font-size: 1.5em;
+        max-width: 300px;
+    }
+
+    .name {
+        opacity: 0.8
+    }
+}
+
+.allPhotos {
+    height: calc(100vh - 70px);   /* Adjust according to navbar */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header {
+    flex-shrink: 0;
+}
+
+.allPhotos hr {
+    flex-shrink: 0;
+}
+
+.photos-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding-right: 8px;
+}
+
+.photos-scroll::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
