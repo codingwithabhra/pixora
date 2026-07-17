@@ -67,7 +67,7 @@
 }
 
 .allPhotos {
-    height: calc(100vh - 70px);   /* Adjust according to navbar */
+    height: calc(100vh - 30px);   /* Adjust according to navbar */
     display: flex;
     flex-direction: column;
     overflow: hidden;

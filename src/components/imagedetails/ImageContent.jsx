@@ -60,154 +60,143 @@ const ImageContent = () => {
   return (
     <>
       {/* IMAGE CONTENT */}
-      <div className="imgContent py-4 d-flex justify-content-center">
+      <div className="imgContent py-4">
         {selectedImage && (
-          <div
-            className="card overflow-hidden mt-4"
-            style={{ maxWidth: "1000px", width: "100%" }}
-          >
-            <div className="row g-0">
-              {/* left part */}
-              <div className="col-lg-7">
-                <div className="image-preview position-relative">
-                  <img
-                    src={selectedImage?.filePath}
-                    alt={selectedImage?.name}
-                    className="w-100"
-                  />
+          <div className="image-details-card">
+            {/* LEFT SIDE */}
+            <div className="details-image">
+              <div className="image-preview">
+                <img src={selectedImage.filePath} alt={selectedImage.name} />
 
-                  {/* Favourite Button */}
-                  <button
-                    className="favourite-btn"
-                    onClick={() =>
-                      dispatch(
-                        updateImageById({
-                          albumId,
-                          imageId,
-                          updatedData: {
-                            name: selectedImage.name,
-                            person: selectedImage.person,
-                            tags: selectedImage.tags,
-                            isFavourite: !selectedImage.isFavourite,
-                          },
-                        }),
-                      )
-                    }
-                  >
-                    {selectedImage.isFavourite ? (
-                      <FaHeart size={28} />
-                    ) : (
-                      <FaRegHeart size={28} />
-                    )}
-                  </button>
-                </div>
+                <button
+                  className="favourite-btn"
+                  onClick={() =>
+                    dispatch(
+                      updateImageById({
+                        albumId,
+                        imageId,
+                        updatedData: {
+                          name: selectedImage.name,
+                          person: selectedImage.person,
+                          tags: selectedImage.tags,
+                          isFavourite: !selectedImage.isFavourite,
+                        },
+                      }),
+                    )
+                  }
+                >
+                  {selectedImage.isFavourite ? (
+                    <FaHeart size={28} />
+                  ) : (
+                    <FaRegHeart size={28} />
+                  )}
+                </button>
               </div>
+            </div>
 
-              {/* right part */}
-              <div className="col-lg-5 p-4 d-block m-auto">
+            {/* RIGHT SIDE */}
+
+            <div className="details-content">
+              {editMode ? (
+                <input
+                  className="form-control mb-3"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              ) : (
+                <h2>{selectedImage.name}</h2>
+              )}
+
+              <hr />
+
+              <p>
+                <strong>Album :</strong> {selectedAlbum?.name}
+              </p>
+
+              <p>
+                <strong>Person :</strong>{" "}
                 {editMode ? (
                   <input
-                    className="form-control mb-3"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    className="form-control mt-2"
+                    value={person}
+                    onChange={(e) => setPerson(e.target.value)}
                   />
                 ) : (
-                  <h2 className="mb-3">{selectedImage.name}</h2>
+                  selectedImage.person || "Not specified"
+                )}
+              </p>
+
+              <p>
+                <strong>Size :</strong> {(selectedImage.size / 1024).toFixed(2)}{" "}
+                KB
+              </p>
+
+              <p>
+                <strong>Uploaded :</strong>{" "}
+                {new Date(selectedImage.createdAt).toLocaleDateString()}
+              </p>
+
+              <div>
+                <strong>Tags :</strong>
+
+                {editMode ? (
+                  <input
+                    className="form-control mt-2"
+                    value={tags}
+                    onChange={(e) => setTags(e.target.value)}
+                  />
+                ) : (
+                  <div className="mt-2">
+                    {selectedImage.tags.map((tag) => (
+                      <span className="badge bg-success me-2 mb-2" key={tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="action-buttons">
+                {editMode ? (
+                  <button className="btn btn-success" onClick={handleSave}>
+                    Save Changes
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-outline-primary"
+                    onClick={() => setEditMode(true)}
+                  >
+                    <MdEdit size={22} />
+                  </button>
                 )}
 
-                <p>
-                  <strong>Album : </strong>
-                  {selectedAlbum?.name}
-                </p>
-
-                <p>
-                  <strong>Person : </strong>
-
-                  {editMode ? (
-                    <input
-                      className="form-control mt-2"
-                      value={person}
-                      onChange={(e) => setPerson(e.target.value)}
-                    />
-                  ) : (
-                    selectedImage.person || "Not specified"
-                  )}
-                </p>
-
-                <p>
-                  <strong>Size : </strong>
-                  {(selectedImage.size / 1024).toFixed(2)} KB
-                </p>
-
-                <p>
-                  <strong>Uploaded : </strong>
-                  {new Date(selectedImage.createdAt).toLocaleDateString()}
-                </p>
-
-                <div>
-                  <strong>Tags : </strong>
-
-                  {editMode ? (
-                    <input
-                      className="form-control mt-2"
-                      value={tags}
-                      onChange={(e) => setTags(e.target.value)}
-                    />
-                  ) : (
-                    <p className="mt-2">
-                      {selectedImage.tags.map((tag) => (
-                        <span className="badge bg-success me-2" key={tag}>
-                          {tag}
-                        </span>
-                      ))}
-                    </p>
-                  )}
-                </div>
-
-                <div className="buttons mt-3">
-                  {editMode ? (
-                    <button className="btn btn-success" onClick={handleSave}>
-                      Save Changes
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-outline-primary"
-                      onClick={() => setEditMode(true)}
-                    >
-                      <MdEdit size={22} />
-                    </button>
-                  )}
-
-                  {/* cancel button */}
-                  {editMode && (
-                    <button
-                      className="btn btn-secondary ms-2"
-                      onClick={() => {
-                        setEditMode(false);
-                        setName(selectedImage.name);
-                        setPerson(selectedImage.person);
-                        setTags(selectedImage.tags.join(", "));
-                      }}
-                    >
-                      Cancel
-                    </button>
-                  )}
-
-                  {/* delete button */}
+                {editMode && (
                   <button
-                    className="btn btn-outline-danger ms-2"
-                    onClick={() =>
-                      dispatch(
-                        deleteImage({
-                          albumId,
-                          imageId,
-                        }),
-                      )
-                    }
+                    className="btn btn-secondary"
+                    onClick={() => {
+                      setEditMode(false);
+                      setName(selectedImage.name);
+                      setPerson(selectedImage.person);
+                      setTags(selectedImage.tags.join(", "));
+                    }}
                   >
-                    <MdDelete size={22} />
+                    Cancel
                   </button>
-                </div>
+                )}
+
+                <button
+                  className="btn btn-outline-danger"
+                  onClick={() =>
+                    dispatch(
+                      deleteImage({
+                        albumId,
+                        imageId,
+                      }),
+                    )
+                  }
+                >
+                  <MdDelete size={22} />
+                </button>
               </div>
             </div>
           </div>

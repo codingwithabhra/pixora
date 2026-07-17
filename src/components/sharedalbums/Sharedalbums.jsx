@@ -52,10 +52,8 @@ const Sharedalbums = () => {
         <h1 className="text-white fw-bold mt-2">Shared Albums</h1>
 
         <button className="btn btn-light" onClick={() => setShowModal(true)}>
-          <span className="mx-2">
-            <IoShareSocialOutline size={23} />
-          </span>
-          <span className="mx-2">Share With</span>
+          <IoShareSocialOutline size={23} />
+          <span className="ms-2 d-none d-sm-inline">Share With</span>
         </button>
       </div>
       <hr style={{ color: "white", height: "1px" }} />

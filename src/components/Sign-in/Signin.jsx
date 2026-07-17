@@ -9,7 +9,7 @@ const Signin = () => {
 
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
-      const response = await axios.post("https://pixora-backend-smoky.vercel.app/auth/google", 
+      const response = await axios.post("http://localhost:3000/auth/google", 
         {
            id_token: credentialResponse.credential,
         }
@@ -25,7 +25,7 @@ const Signin = () => {
   return (
     <div className="signinBg d-flex align-items-center justify-content-center">
       <div
-        className="card overflow-hidden"
+        className="card overflow-hidden m-4"
         style={{ maxWidth: "700px", width: "100%" }}
       >
         <div className="row">
@@ -39,17 +39,7 @@ const Signin = () => {
               style={{ maxWidth: "100px" }}
               className="d-block m-auto"
             />
-            <div className="google pt-4">
-              {/* <FcGoogle
-                className="d-block m-auto"
-                style={{ fontSize: "60px" }}
-              /> */}
-              {/* <button className="p-2 mt-3" onClick={login}>
-                <span className="px-1">
-                  <FcGoogle />
-                </span>
-                Sign in with Google
-              </button> */}
+            <div className="google p-4">
               <GoogleLogin
                 onSuccess={handleGoogleSuccess}
                 onError={() => console.log("Login Failed")}

@@ -20,7 +20,6 @@
 
 
 .signinBg .card{
-    background: rgba(255,255,255,.15) !important;
     border-radius: 24px;
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px) !important;

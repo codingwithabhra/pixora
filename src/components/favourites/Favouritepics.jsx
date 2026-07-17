@@ -29,7 +29,7 @@ const Favouritepics = () => {
       <div className="favouriteImages photos-scroll">
         <div className="row">
           {images.map((image) => (
-            <div key={image._id} className="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div key={image._id} className="col-lg-3 col-md-4 col-sm-4 col-4 mb-4">
               <Link
                 to={`/albums/${image.albumId._id}/images/${image._id}`}
                 className="text-decoration-none"
@@ -39,7 +39,7 @@ const Favouritepics = () => {
                     src={image.filePath}
                     className="card-img-top"
                     style={{
-                      height: "220px",
+                      aspectRatio:"1/1",
                       objectFit: "cover",
                     }}
                     alt={image.name}

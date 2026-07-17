@@ -7,7 +7,11 @@ import "./Albums.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAlbums, createAlbums, deleteAlbumById } from "../gallery/albumSlice";
+import {
+  fetchAlbums,
+  createAlbums,
+  deleteAlbumById,
+} from "../gallery/albumSlice";
 
 const Albums = () => {
   const [showModal, setShowModal] = useState(false);
@@ -56,10 +60,8 @@ const Albums = () => {
         <h1 className="text-white fw-bold mt-2">Albums</h1>
 
         <button className="btn btn-light" onClick={() => setShowModal(true)}>
-          <span className="mx-2">
-            <ImFolderUpload size={20} />
-          </span>
-          <span className="mx-2">Create Album</span>
+          <ImFolderUpload size={20} />
+          <span className="ms-2 d-none d-sm-inline">Create Album</span>
         </button>
       </div>
       <hr style={{ color: "white", height: "1px" }} />

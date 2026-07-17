@@ -7,14 +7,13 @@ import {
   updateImageById,
   deleteImage,
   addComment,
-  deleteComment
+  deleteComment,
 } from "../albumdetails/imageSlice";
 import { fetchAlbumById } from "../gallery/albumSlice";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import "./Imagedetails.css";
 import ImageContent from "./ImageContent";
 import CommentSection from "./CommentSection";
-
 
 const Imagedetails = () => {
   const { albumId, imageId } = useParams();
@@ -31,21 +30,20 @@ const Imagedetails = () => {
   // console.log("Album id --", albumId);
   // console.log("selected Image --", selectedImage);
 
-
   return (
     <div className="imageDetails">
       <div className="backButton mt-3">
-        <Link className="btn btn-primary" to={`/albums/${selectedAlbum?._id}`}>
-          <span className="mx-2">
+        <Link className="btn btn-primary d-none d-sm-inline" to={`/albums/${selectedAlbum?._id}`}>
             <MdOutlineKeyboardBackspace size={25} />
-          </span>
-          Back to album
+          <span className="ms-2 d-none d-sm-inline">Back to album</span>
         </Link>
       </div>
 
-      <ImageContent />
+      <div className="photos-scroll mt-4">
+        <ImageContent />
 
-      <CommentSection albumId={albumId} imageId={imageId}/>
+        <CommentSection albumId={albumId} imageId={imageId} />
+      </div>
     </div>
   );
 };

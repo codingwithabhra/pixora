@@ -33,7 +33,7 @@ const DisplayAllImages = () => {
     <div className="displayAllimages">
       <div className="row pt-3">
         {images.map((image) => (
-          <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={image._id}>
+          <div className="col-lg-3 col-md-4 col-sm-4 col-4 mb-4" key={image._id}>
             <Link
               to={`/albums/${image.albumId._id}/images/${image._id}`}
               className="text-decoration-none"
@@ -44,7 +44,7 @@ const DisplayAllImages = () => {
                   alt={image.name}
                   className="card-img-top"
                   style={{
-                    height: "220px",
+                    aspectRatio: "1/1",
                     objectFit: "cover",
                   }}
                 />

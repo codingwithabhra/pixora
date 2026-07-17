@@ -1,0 +1,67 @@
+.mobileSidebar {
+    width: 280px;
+    background: rgba(20, 20, 20, .35);
+    backdrop-filter: blur(18px);
+    border-right: 1px solid rgba(255, 255, 255, .15);
+    color: white;
+}
+
+.mobileSidebar .offcanvas-header {
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.menu-section {
+    margin-bottom: 18px;
+}
+
+.menu-title {
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    padding: 10px 0;
+}
+
+.submenu {
+    padding-left: 18px;
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.submenu a,
+.logoutBtn {
+
+    background: none;
+    border: none;
+
+    color: white;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    opacity: .85;
+
+    transition: .25s;
+}
+
+.submenu a:hover,
+.logoutBtn:hover {
+
+    opacity: 1;
+    color: #7cc8ff;
+
+}

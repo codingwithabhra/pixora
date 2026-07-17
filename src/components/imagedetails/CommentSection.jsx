@@ -28,12 +28,10 @@ const CommentSection = ({ albumId, imageId }) => {
   const comments = selectedImage?.comments || [];
 
   return (
-    <div
-      className="cmntSection card mt-4 shadow p-4 d-block m-auto"
-      style={{ maxWidth: "1000px", width: "100%" }}
-    >
+    <div className="cmntSection image-details-card mt-4 shadow p-4 d-block m-auto">
       <div className="card-header">
-        <h4>Comments</h4>
+        <h4 className="text-white">Comments</h4>
+        <hr />
       </div>
 
       <div className="card-body">
@@ -43,13 +41,25 @@ const CommentSection = ({ albumId, imageId }) => {
           <p className="text-secondary">No comments yet.</p>
         ) : (
           comments.map((comment) => (
-            <div className="d-flex justify-content-between">
-              <div className="cmntDisplay d-flex align-items-center gap-3">
-                <h6 className="fw-bold mb-0">{comment.commentedBy.name} : </h6>
-                <p className="mb-0">{comment.text}</p>
+            <div className="d-flex justify-content-between flex-wrap mt-4">
+              <div className="cmntDisplay d-flex align-items-center flex-wrap">
+                <h6 className="fw-bold mb-0 text-white">
+                  {comment.commentedBy.name} : {" "}
+                </h6>
+                <p className="mb-0 ms-1 text-white">{comment.text}</p>
               </div>
 
-              <small className="mb-0 fw-light">({new Date(comment.createdAt).toLocaleString()})</small>
+              <small className="mb-0 fw-light text-white">
+                (
+                {new Date(comment.createdAt).toLocaleString([], {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+                )
+              </small>
             </div>
           ))
         )}

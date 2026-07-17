@@ -1,9 +1,13 @@
 import React from "react";
 import SideNav from "../components/Sidebar/SideNav";
 import Favouritepics from "../components/favourites/Favouritepics";
+import MobileHeader from "../components/Sidebar/MobileHeader";
 
 const Favourites = () => {
   return (
+    <>
+    <MobileHeader />
+    
     <main className="d-flex">
       <div className="leftSide d-none d-lg-block">
         <SideNav />
@@ -14,6 +18,7 @@ const Favourites = () => {
         </div>
       </div>
     </main>
+    </>
   );
 };
 

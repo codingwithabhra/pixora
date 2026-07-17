@@ -2,7 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchAllMyPhotos, uploadImage, fetchAllImages } from "../albumdetails/imageSlice";
+import {
+  fetchAllMyPhotos,
+  uploadImage,
+  fetchAllImages,
+} from "../albumdetails/imageSlice";
 import { fetchAlbums } from "../gallery/albumSlice";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import DisplayAllImages from "./DisplayAllImages";
@@ -83,10 +87,8 @@ const Allphotos = () => {
           className="btn btn-light"
           onClick={() => setShowUploadModal(true)}
         >
-          <span className="mx-2">
-            <IoCloudUploadOutline size={25} />
-          </span>
-          <span className="mx-2">Upload Photo</span>
+          <IoCloudUploadOutline size={22} />
+          <span className="ms-2 d-none d-sm-inline">Upload Photo</span>
         </button>
       </div>
       <hr style={{ color: "white", height: "1px" }} />
