@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3000/albums";
-const BASE_URL_2 = "http://localhost:3000";
+const BASE_URL = "https://pixora-backend-smoky.vercel.app/albums";
+const BASE_URL_2 = "https://pixora-backend-smoky.vercel.app";
 
 const getHeader = () => ({
     Authorization: `Bearer ${localStorage.getItem("token")}`
