@@ -32,14 +32,14 @@ const Signin = () => {
           <div className="img col-md-8">
             <img src="/signinBg.jpg" alt="image" className="w-100 h-100" />
           </div>
-          <div className="content col-md-4 my-2 px-3">
+          <div className="content col-md-4 my-2 px-3 d-flex justify-content-center align-items-center flex-column">
             <img
               src="/pixora-icon.png"
               alt="Pixora"
-              style={{ maxWidth: "100px" }}
+              style={{ maxWidth: "10rem" }}
               className="d-block m-auto"
             />
-            <div className="google p-4">
+            <div className="google p-4 d-block m-auto">
               <GoogleLogin
                 onSuccess={handleGoogleSuccess}
                 onError={() => console.log("Login Failed")}
