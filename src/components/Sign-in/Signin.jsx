@@ -26,7 +26,7 @@ const Signin = () => {
     <div className="signinBg d-flex align-items-center justify-content-center">
       <div
         className="card overflow-hidden m-4"
-        style={{ maxWidth: "700px", width: "100%" }}
+        style={{ maxWidth: "900px", width: "100%" }}
       >
         <div className="row">
           <div className="img col-md-8">
