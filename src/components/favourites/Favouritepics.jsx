@@ -27,36 +27,49 @@ const Favouritepics = () => {
 
       {/* FAVOURITE IMAGES TO DISPLAY */}
       <div className="favouriteImages photos-scroll">
-        <div className="row">
-          {images.map((image) => (
-            <div key={image._id} className="col-lg-3 col-md-4 col-sm-4 col-4 mb-4">
-              <Link
-                to={`/albums/${image.albumId._id}/images/${image._id}`}
-                className="text-decoration-none"
-              >
-                <div className="card h-100 image">
-                  <img
-                    src={image.filePath}
-                    className="card-img-top"
-                    style={{
-                      aspectRatio:"1/1",
-                      objectFit: "cover",
-                    }}
-                    alt={image.name}
-                  />
+        {status === "loading" ? (
+          <p className="text-center text-white fs-4">Loading...</p>
+        ) : (
+          <div className="row">
+            {images.length === 0 ? (
+              <p className="text-center text-white fs-4 mt-4">
+                No favourite image found.
+              </p>
+            ) : (
+              images.map((image) => (
+                <div
+                  key={image._id}
+                  className="col-lg-3 col-md-4 col-sm-4 col-4 mb-4"
+                >
+                  <Link
+                    to={`/albums/${image.albumId._id}/images/${image._id}`}
+                    className="text-decoration-none"
+                  >
+                    <div className="card h-100 image">
+                      <img
+                        src={image.filePath}
+                        className="card-img-top"
+                        style={{
+                          aspectRatio: "1/1",
+                          objectFit: "cover",
+                        }}
+                        alt={image.name}
+                      />
 
-                  <div className="card-body content">
-                    <h6>{image.name}</h6>
+                      <div className="card-body content">
+                        <h6>{image.name}</h6>
 
-                    <small className="text-muted">
-                      Album : {image.albumId.name}
-                    </small>
-                  </div>
+                        <small className="text-muted">
+                          Album : {image.albumId.name}
+                        </small>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
-              </Link>
-            </div>
-          ))}
-        </div>
+              ))
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

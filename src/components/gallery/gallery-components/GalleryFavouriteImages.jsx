@@ -22,7 +22,7 @@ const GalleryFavouriteImages = () => {
     <div className="gallery-grid-item">
       <Link to="/photos" className="text-decoration-none">
         <div className="gallery-card">
-          <h5 className="gallery-title">
+          <h5 className="gallery-title fs-5">
             Favourites
             <span>({images.length})</span>
           </h5>

@@ -112,68 +112,73 @@ const Albums = () => {
       <div className="photos-scroll">
         <div className="albums col-12 mt-4 ">
           <div className="row">
-            {albums.map((album) => (
-              <Link
-                key={album._id}
-                to={`/albums/${album._id}`}
-                className="col-md-6 mb-4 text-decoration-none"
-              >
-                <div className="card album-card h-100">
-                  {/* Preview Images */}
-
-                  <div className="album-preview-row">
+            {albums.length === 0 ? (
+              <p className="text-white text-center mt-3 fs-4">No album found.</p>
+            ) : (
+              albums.map((album) => (
+                <Link
+                  key={album._id}
+                  to={`/albums/${album._id}`}
+                  className="col-md-6 mb-4 text-decoration-none"
+                >
+                  <div className="card album-card h-100">
                     {/* Preview Images */}
+
                     <div className="album-preview-row">
-                      {album.previewImages && album.previewImages.length > 0 ? (
-                        album.previewImages.map((img, index) => {
-                          const isLast = index === 3 && album.totalImages > 4;
+                      {/* Preview Images */}
+                      <div className="album-preview-row">
+                        {album.previewImages &&
+                        album.previewImages.length > 0 ? (
+                          album.previewImages.map((img, index) => {
+                            const isLast = index === 3 && album.totalImages > 4;
 
-                          return (
-                            <div className="preview-item" key={index}>
-                              <img src={img.filePath} alt="" />
+                            return (
+                              <div className="preview-item" key={index}>
+                                <img src={img.filePath} alt="" />
 
-                              {isLast && (
-                                <div className="overlay">
-                                  +{album.totalImages - 4}
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })
-                      ) : (
-                        <div
-                          className="no-images d-flex justify-content-center align-items-center"
-                          style={{ height: "120px" }}
-                        >
-                          No Images Available
+                                {isLast && (
+                                  <div className="overlay">
+                                    +{album.totalImages - 4}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })
+                        ) : (
+                          <div
+                            className="no-images d-flex justify-content-center align-items-center"
+                            style={{ height: "120px" }}
+                          >
+                            No Images Available
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      {/* card header */}
+                      <div className="cardHeader d-flex justify-content-between">
+                        <div className="left">
+                          <h5>{album.name}</h5>
+                          <p className="fw-regular">{album.description}</p>
                         </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className="card-body">
-                    {/* card header */}
-                    <div className="cardHeader d-flex justify-content-between">
-                      <div className="left">
-                        <h5>{album.name}</h5>
-                        <p className="fw-regular">{album.description}</p>
-                      </div>
-                      <div className="right">
-                        <button
-                          className="btn btn-outline-danger"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            handleDeleteAlbum(album._id, album.name);
-                          }}
-                        >
-                          <MdDelete size={20} />
-                        </button>
+                        <div className="right">
+                          <button
+                            className="btn btn-outline-danger"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleDeleteAlbum(album._id, album.name);
+                            }}
+                          >
+                            <MdDelete size={20} />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))
+            )}
           </div>
         </div>
       </div>

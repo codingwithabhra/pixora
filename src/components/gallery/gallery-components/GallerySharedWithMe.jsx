@@ -18,7 +18,7 @@ const GallerySharedWithMe = () => {
     <div className="gallery-grid-item">
       <Link to="/shared-with-me" className="text-decoration-none">
         <div className="gallery-card">
-          <h5 className="gallery-title">
+          <h5 className="gallery-title fs-5">
             Shared
             <span>({sharedWithMeAlbums.length})</span>
           </h5>

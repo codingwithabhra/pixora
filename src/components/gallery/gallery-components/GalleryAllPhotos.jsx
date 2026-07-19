@@ -17,8 +17,8 @@ const GalleryAllPhotos = () => {
     <div className="gallery-grid-item">
       <Link to="/photos" className="text-decoration-none">
         <div className="gallery-card">
-          <h5 className="gallery-title">
-            All Photos
+          <h5 className="gallery-title fs-5">
+            All
             <span>({images.length})</span>
           </h5>
           <div className="preview-grid">

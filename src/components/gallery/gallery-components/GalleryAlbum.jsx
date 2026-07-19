@@ -18,7 +18,7 @@ const GalleryAlbum = () => {
     <div className="gallery-grid-item">
       <Link to="/albums" className="text-decoration-none">
         <div className="gallery-card">
-          <h5 className="gallery-title">
+          <h5 className="gallery-title fs-5">
             Albums
             <span>({albums.length})</span>
           </h5>
