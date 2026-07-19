@@ -74,7 +74,6 @@
     height: calc(100vh - 30px);   /* Adjust according to navbar */
     display: flex;
     flex-direction: column;
-
 }
 
 .header {
@@ -96,4 +95,18 @@
 .photos-scroll::-webkit-scrollbar {
     width: 0;
     height: 0;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+@media(max-width:768px){
+
+    .gallery-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
+    }
 }

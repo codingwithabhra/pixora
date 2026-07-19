@@ -14,7 +14,7 @@ const Gallery = () => {
       <hr style={{ color: "white", height: "1px" }} />
 
       {/* CONTENT */}
-      <div className="row g-4 mt-1 photos-scroll">
+      <div className="gallery-grid">
         <GalleryAlbum />
 
         <GalleryAllPhotos />

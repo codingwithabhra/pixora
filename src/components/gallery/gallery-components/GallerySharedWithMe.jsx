@@ -15,14 +15,13 @@ const GallerySharedWithMe = () => {
   }, [dispatch]);
 
   return (
-    <div className="col-6">
-      <h5 className="gallery-title">
-        Shared
-        <span>({sharedWithMeAlbums.length})</span>
-      </h5>
-
+    <div className="gallery-grid-item">
       <Link to="/shared-with-me" className="text-decoration-none">
         <div className="gallery-card">
+          <h5 className="gallery-title">
+            Shared
+            <span>({sharedWithMeAlbums.length})</span>
+          </h5>
           <div className="preview-grid">
             {sharedWithMeAlbums.length > 0 ? (
               sharedWithMeAlbums.slice(0, 4).map((album) => (

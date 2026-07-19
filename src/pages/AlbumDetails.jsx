@@ -12,7 +12,7 @@ const AlbumDetails = () => {
       <div className="leftSide d-none d-lg-block">
         <SideNav />
       </div>
-      <div className="rightSide p-4" style={{ flex: "1" }}>
+      <div className="rightSide py-4" style={{ flex: "1" }}>
         <div className="container-fluid">
           <Albumdetails />
         </div>

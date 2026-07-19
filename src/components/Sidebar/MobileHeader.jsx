@@ -5,7 +5,7 @@ import MobileSideNav from "./MobileSideNav";
 const MobileHeader = () => {
   return (
     <>
-    <nav className="navbar navbar-dark bg-dark d-lg-none px-3">
+    <nav className="navbar navbar-dark bg-dark d-lg-none px-1">
       <div className="d-flex align-items-center">
         <img src="/sideNavLogo.png" width="55" alt="" className="me-2" />
 

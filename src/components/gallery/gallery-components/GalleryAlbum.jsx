@@ -15,17 +15,20 @@ const GalleryAlbum = () => {
   }, [dispatch]);
 
   return (
-    <div className="col-6">
-      <h5 className="gallery-title">
-        Albums
-        <span>({albums.length})</span>
-      </h5>
-
+    <div className="gallery-grid-item">
       <Link to="/albums" className="text-decoration-none">
         <div className="gallery-card">
+          <h5 className="gallery-title">
+            Albums
+            <span>({albums.length})</span>
+          </h5>
           <div className="preview-grid">
             {albums.slice(0, 4).map((album) => (
-              <Link className="album-preview text-decoration-none" key={album._id} to="/albums">
+              <Link
+                className="album-preview text-decoration-none"
+                key={album._id}
+                to="/albums"
+              >
                 {album.previewImages.length > 0 ? (
                   <img src={album.previewImages[0].filePath} alt={album.name} />
                 ) : (

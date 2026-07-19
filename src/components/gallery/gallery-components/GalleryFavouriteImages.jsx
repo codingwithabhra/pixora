@@ -19,17 +19,20 @@ const GalleryFavouriteImages = () => {
   }, [dispatch]);
 
   return (
-    <div className="col-6">
-      <h5 className="gallery-title">
-        Favourites
-        <span>({images.length})</span>
-      </h5>
-
+    <div className="gallery-grid-item">
       <Link to="/photos" className="text-decoration-none">
         <div className="gallery-card">
+          <h5 className="gallery-title">
+            Favourites
+            <span>({images.length})</span>
+          </h5>
           <div className="preview-grid">
             {favImages.slice(0, 4).map((image) => (
-              <Link key={image._id} className="preview-item text-decoration-none" to="/favourites">
+              <Link
+                key={image._id}
+                className="preview-item text-decoration-none"
+                to="/favourites"
+              >
                 <img src={image.filePath} alt="" />
               </Link>
             ))}

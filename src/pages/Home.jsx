@@ -8,10 +8,10 @@ const Home = () => {
     <>
       <MobileHeader />
       <main className="d-flex">
-        <div className="leftSide d-none d-lg-block">
+        <div className="leftSide d-none d-lg-block h-100" style={{minHeight:"100%"}}>
           <SideNav />
         </div>
-        <div className="rightSide p-4" style={{ flex: "1" }}>
+        <div className="rightSide py-4" style={{ flex: "1" }}>
           <div className="container-fluid">
             <Gallery />
           </div>
