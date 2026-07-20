@@ -110,7 +110,7 @@ Sample response:<br>
 ```
 
 ### **POST /api/albums**<br>
-Get complete album list from database<br>
+Send complete album list to database<br>
 Sample response:<br>
 ```
 [{_id, name, description, person, isFavourite},...]
