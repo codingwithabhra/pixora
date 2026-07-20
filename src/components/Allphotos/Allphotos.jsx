@@ -30,6 +30,8 @@ const Allphotos = () => {
 
   const { images } = useSelector((state) => state.images);
   const { albums } = useSelector((state) => state.albums);
+  console.log('all photos', images);
+  
 
   const handleImageUpload = (e) => {
     setImage(e.target.files[0]);

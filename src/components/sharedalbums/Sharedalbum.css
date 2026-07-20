@@ -1,0 +1,27 @@
+.sharedAlbum {
+    height: calc(100vh - 30px);   /* Adjust according to navbar */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header {
+    flex-shrink: 0;
+}
+
+.sharedAlbum hr {
+    flex-shrink: 0;
+}
+
+.photos-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding-right: 8px;
+}
+
+.photos-scroll::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}

@@ -9,6 +9,7 @@ import {
   fetchUsers,
 } from "../gallery/albumSlice";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Sharedalbums = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Sharedalbums = () => {
     const result = await dispatch(
       shareAlbum({
         albumId: selectedAlbum,
-        users: [selectedUser],
+        userIds: [selectedUser],
       }),
     );
 
@@ -45,9 +46,10 @@ const Sharedalbums = () => {
   };
 
   const { albums, sharedAlbums, users } = useSelector((state) => state.albums);
+  console.log("Shared album--", sharedAlbums);
 
   return (
-    <div>
+    <div className="sharedAlbum">
       <div className="header d-flex justify-content-between align-items-center">
         <h1 className="text-white fw-bold mt-2">Shared Albums</h1>
 
@@ -114,37 +116,64 @@ const Sharedalbums = () => {
         </div>
       )}
 
-      {sharedAlbums.length === 0 ? (
-        <div className="text-center text-secondary mt-5">
-          <h5>No album found</h5>
+      <div className="photos-scroll">
+        <div className="albums col-12 mt-4">
+          <div className="row">
+            {sharedAlbums.length === 0 ? (
+              <p className="text-white text-center mt-3 fs-4">
+                No shared albums found.
+              </p>
+            ) : (
+              sharedAlbums.map((album) => (
+                <Link
+                  key={album._id}
+                  to={`/albums/${album._id}`}
+                  className="col-md-6 mb-4 text-decoration-none"
+                >
+                  <div className="card album-card h-100">
+                    {/* Preview Images */}
+                    <div className="album-preview-row">
+                      {album.previewImages && album.previewImages.length > 0 ? (
+                        album.previewImages.map((img, index) => {
+                          const isLast = index === 3 && album.totalImages > 4;
+
+                          return (
+                            <div className="preview-item" key={index}>
+                              <img src={img.filePath} alt="" />
+
+                              {isLast && (
+                                <div className="overlay">
+                                  +{album.totalImages - 4}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })
+                      ) : (
+                        <div
+                          className="no-images d-flex justify-content-center align-items-center"
+                          style={{ height: "120px" }}
+                        >
+                          No Images Available
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="card-body">
+                      <h5>{album.name}</h5>
+
+                      <div className="text-white">
+                        <span className="badge text-bg-success me-2">Shared with :{" "}</span>
+                        {album.sharedUsers?.map((user) => user.name).join(", ")}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))
+            )}
+          </div>
         </div>
-      ) : (
-        <div className="row">
-          {sharedAlbums?.map((album) => (
-            <div className="col-md-6 mb-4" key={album._id}>
-              <div className="card album-card">
-                <div className="card-body">
-                  <h5>{album.name}</h5>
-
-                  <p>{album.description}</p>
-
-                  <p>
-                    <strong>Shared With :</strong>
-                  </p>
-
-                  <ul>
-                    {album.sharedUsers.map((user) => (
-                      <li key={user._id}>
-                        {user.name} ({user.email})
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      </div>
     </div>
   );
 };

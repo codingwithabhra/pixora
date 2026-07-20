@@ -80,11 +80,11 @@ export const deleteAlbumById = createAsyncThunk("albums/deleteAlbumById",
 
 //to Share Album
 export const shareAlbum = createAsyncThunk("albums/shareAlbum",
-    async ({ albumId, emails }) => {
+    async ({ albumId, userIds }) => {
         const response = await axios.post(
             `${BASE_URL}/${albumId}/share`,
             {
-                emails
+                userIds
             },
             {
                 headers: getHeaders()
