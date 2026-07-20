@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://pixora-backend-smoky.vercel.app";
 
 export const fetchProfile = createAsyncThunk("profile/fetchProfile",
 

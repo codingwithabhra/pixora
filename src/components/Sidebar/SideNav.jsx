@@ -22,10 +22,10 @@ const SideNav = () => {
   return (
     <div className="sideNav p-4 h-100">
       {/* LOGO */}
-      <div className="sidenavLogo">
+      <Link className="sidenavLogo text-decoration-none" to="/home">
         <img src="/sideNavLogo.png" alt="Logo" />
         <h2>Pixora</h2>
-      </div>
+      </Link>
 
       {/* FOR NAVIGATION LINKS */}
       <nav className="px-3">

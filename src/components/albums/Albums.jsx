@@ -40,7 +40,7 @@ const Albums = () => {
       setAlbumDescription("");
       setShowModal(false);
     } else {
-      toast.error(result.error.message || "Failed to create album");
+      toast.error(result.payload || "Failed to create album");
     }
   };
 

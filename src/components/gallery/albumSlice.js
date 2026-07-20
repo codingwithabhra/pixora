@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3000/albums";
-const BASE_URL_2 = "http://localhost:3000";
+const BASE_URL = "https://pixora-backend-smoky.vercel.app/albums";
+const BASE_URL_2 = "https://pixora-backend-smoky.vercel.app";
 
 const getHeaders = () => ({
     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -21,17 +21,24 @@ export const fetchAlbums = createAsyncThunk("albums/fetchAlbums",
     });
 
 //create albums
-export const createAlbums = createAsyncThunk("albums/createAlbum",
-    async (newAlbum) => {
-        const response = await axios.post(
-            BASE_URL,
-            newAlbum,
-            {
-                headers: getHeaders()
-            }
-        );
+export const createAlbums = createAsyncThunk(
+    "albums/createAlbum",
+    async (newAlbum, { rejectWithValue }) => {
+        try {
+            const response = await axios.post(
+                BASE_URL,
+                newAlbum,
+                {
+                    headers: getHeaders(),
+                }
+            );
 
-        return response.data.album;
+            return response.data.album;
+        } catch (error) {
+            return rejectWithValue(
+                error.response?.data?.message || "Failed to create album"
+            );
+        }
     }
 );
 
@@ -174,8 +181,14 @@ export const albumSlice = createSlice({
         });
 
         // Add Album
-        builder.addCase(createAlbums.fulfilled, (state, action) => {
-            state.albums.push(action.payload);
+        builder.addCase(createAlbums.pending, (state) => {
+            state.status = "loading";
+            state.error = null;
+        });
+
+        builder.addCase(createAlbums.rejected, (state, action) => {
+            state.status = "error";
+            state.error = action.payload;
         });
 
         // Fetch Album By Id
