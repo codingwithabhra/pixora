@@ -10,6 +10,9 @@ const Favouritepics = () => {
 
   const { images, status } = useSelector((state) => state.images);
 
+  const favImages = images.filter((img) => img.isFavourite !== false);
+  // console.log(favImages);
+
   useEffect(() => {
     dispatch(fetchFavouriteImages());
   }, [dispatch]);
@@ -31,12 +34,12 @@ const Favouritepics = () => {
           <p className="text-center text-white fs-4">Loading...</p>
         ) : (
           <div className="row">
-            {images.length === 0 ? (
+            {favImages.length === 0 ? (
               <p className="text-center text-white fs-4 mt-4">
                 No favourite image found.
               </p>
             ) : (
-              images.map((image) => (
+              favImages.map((image) => (
                 <div
                   key={image._id}
                   className="col-lg-3 col-md-4 col-sm-4 col-4 mb-4"

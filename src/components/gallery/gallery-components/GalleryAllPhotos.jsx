@@ -22,15 +22,19 @@ const GalleryAllPhotos = () => {
             <span>({images.length})</span>
           </h5>
           <div className="preview-grid">
-            {images.slice(0, 4).map((image) => (
-              <Link
-                key={image._id}
-                className="preview-item text-decoration-none"
-                to="/allphotos"
-              >
-                <img src={image.filePath} alt="" />
-              </Link>
-            ))}
+            {images.length === 0 ? (
+              <p className="text-white text-center mt-5">No photo</p>
+            ) : (
+              images.slice(0, 4).map((image) => (
+                <Link
+                  key={image._id}
+                  className="preview-item text-decoration-none"
+                  to="/allphotos"
+                >
+                  <img src={image.filePath} alt="" />
+                </Link>
+              ))
+            )}
           </div>
         </div>
       </Link>

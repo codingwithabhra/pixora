@@ -34,7 +34,7 @@ const GallerySharedWithMe = () => {
                 </div>
               ))
             ) : (
-              <p className="text-white">No Albums</p>
+              <p className="text-white text-center mt-5">No Albums</p>
             )}
           </div>
         </div>

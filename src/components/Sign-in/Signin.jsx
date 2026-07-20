@@ -9,7 +9,7 @@ const Signin = () => {
 
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
-      const response = await axios.post("https://pixora-backend-smoky.vercel.app/auth/google", 
+      const response = await axios.post("http://localhost:3000/auth/google", 
         {
            id_token: credentialResponse.credential,
         }

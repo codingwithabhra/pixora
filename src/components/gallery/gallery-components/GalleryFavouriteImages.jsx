@@ -24,10 +24,13 @@ const GalleryFavouriteImages = () => {
         <div className="gallery-card">
           <h5 className="gallery-title fs-5">
             Favourites
-            <span>({images.length})</span>
+            <span>({favImages.length})</span>
           </h5>
           <div className="preview-grid">
-            {favImages.slice(0, 4).map((image) => (
+            {favImages.length === 0 ? (
+              <p className="text-white text-center mt-5">No favourite</p>
+            ) : (
+            favImages.slice(0, 4).map((image) => (
               <Link
                 key={image._id}
                 className="preview-item text-decoration-none"
@@ -35,7 +38,7 @@ const GalleryFavouriteImages = () => {
               >
                 <img src={image.filePath} alt="" />
               </Link>
-            ))}
+            )))}
           </div>
         </div>
       </Link>

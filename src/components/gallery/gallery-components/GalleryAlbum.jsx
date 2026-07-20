@@ -23,21 +23,28 @@ const GalleryAlbum = () => {
             <span>({albums.length})</span>
           </h5>
           <div className="preview-grid">
-            {albums.slice(0, 4).map((album) => (
-              <Link
-                className="album-preview text-decoration-none"
-                key={album._id}
-                to="/albums"
-              >
-                {album.previewImages.length > 0 ? (
-                  <img src={album.previewImages[0].filePath} alt={album.name} />
-                ) : (
-                  <img src="/folder.png" alt="folder" />
-                )}
+            {albums.length === 0 ? (
+              <p className="text-white text-center mt-5">No album</p>
+            ) : (
+              albums.slice(0, 4).map((album) => (
+                <Link
+                  className="album-preview text-decoration-none"
+                  key={album._id}
+                  to="/albums"
+                >
+                  {album.previewImages.length > 0 ? (
+                    <img
+                      src={album.previewImages[0].filePath}
+                      alt={album.name}
+                    />
+                  ) : (
+                    <img src="/folder.png" alt="folder" />
+                  )}
 
-                <p className="album-preview-name">{album.name}</p>
-              </Link>
-            ))}
+                  <p className="album-preview-name">{album.name}</p>
+                </Link>
+              ))
+            )}
           </div>
         </div>
       </Link>
