@@ -70,8 +70,7 @@
     border-radius:0 12px 0 0;
 }
 
-.gallery {
-    height: calc(100vh - 30px);   /* Adjust according to navbar */
+.gallery {  /* Adjust according to navbar */
     display: flex;
     flex-direction: column;
 }

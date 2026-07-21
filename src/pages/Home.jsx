@@ -7,11 +7,11 @@ const Home = () => {
   return (
     <>
       <MobileHeader />
-      <main className="d-flex">
-        <div className="leftSide d-none d-lg-block h-100" style={{minHeight:"100%"}}>
+      <main className="d-flex align-items-stretch">
+        <div className="leftSide d-none d-lg-block">
           <SideNav />
         </div>
-        <div className="rightSide py-4" style={{ flex: "1" }}>
+        <div className="rightSide flex-grow-1 py-4">
           <div className="container-fluid">
             <Gallery />
           </div>

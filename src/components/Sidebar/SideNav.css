@@ -1,6 +1,8 @@
 /* Sidebar */
 .sideNav {
     width: 260px;
+    min-height: 100%;
+    height: 100%;
     padding: 1.5rem;
 
     /* Glass Effect */

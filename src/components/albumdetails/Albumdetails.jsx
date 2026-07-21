@@ -22,8 +22,10 @@ const Albumdetails = () => {
   const dispatch = useDispatch();
 
   const { selectedAlbum } = useSelector((state) => state.albums);
+  console.log("album", selectedAlbum)
 
   const { images } = useSelector((state) => state.images);
+  console.log("images", images)
 
   useEffect(() => {
     dispatch(fetchAlbumById(albumId));
