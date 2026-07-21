@@ -154,12 +154,18 @@ export const imageSlice = createSlice({
         images: [],
         selectedImage: null,
         status: "idle",
+        loading: false,
         error: null,
     },
 
     reducers: {},
 
     extraReducers: (builder) => {
+
+        // Fetch Images
+        builder.addCase(fetchAllImages.pending, (state) => {
+            state.status = "loading";
+        });
 
         builder.addCase(fetchAllImages.fulfilled, (state, action) => {
             state.status = "success";

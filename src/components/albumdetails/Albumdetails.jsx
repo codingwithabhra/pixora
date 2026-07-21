@@ -22,10 +22,10 @@ const Albumdetails = () => {
   const dispatch = useDispatch();
 
   const { selectedAlbum } = useSelector((state) => state.albums);
-  console.log("album", selectedAlbum)
+  console.log("album", selectedAlbum);
 
-  const { images } = useSelector((state) => state.images);
-  console.log("images", images)
+  const { images, status } = useSelector((state) => state.images);
+  console.log("images", images);
 
   useEffect(() => {
     dispatch(fetchAlbumById(albumId));
@@ -80,10 +80,8 @@ const Albumdetails = () => {
           className="btn btn-light"
           onClick={() => setShowUploadModal(true)}
         >
-          <span className="mx-2">
-            <IoCloudUploadOutline size={25} />
-          </span>
-          <span className="mx-2">Upload Photo</span>
+          <IoCloudUploadOutline size={25} />
+          <span className="ms-2 d-none d-sm-inline">Upload Photo</span>
         </button>
       </div>
       {/* <hr style={{ color: "white", height: "1px" }} /> */}
@@ -154,46 +152,52 @@ const Albumdetails = () => {
       {/* IMAGES DISPLAY */}
       <div className="photos-scroll">
         <div className="row mt-5">
-          {images.map((img) => (
-            <Link
-              className="col-md-4 mb-4"
-              key={img._id}
-              to={`/albums/${selectedAlbum?._id}/images/${img._id}`}
-            >
-              <div className="card image">
-                <img
-                  src={img.filePath}
-                  className="card-img-top"
-                  style={{
-                    height: "250px",
-                    objectFit: "cover",
-                  }}
-                />
+          {status === "loading" ? (
+            <p className="text-center text-white mt-5">Loading... </p>
+          ) : images.length === 0 ? (
+            <p className="text-white text-center mt-3 fs-4">No album found.</p>
+          ) : (
+            images.map((img) => (
+              <Link
+                className="col-lg-3 col-md-4 col-sm-4 col-4 mb-4"
+                key={img._id}
+                to={`/albums/${selectedAlbum?._id}/images/${img._id}`}
+              >
+                <div className="card image">
+                  <img
+                    src={img.filePath}
+                    className="card-img-top"
+                    style={{
+                      aspectRatio: "1/1",
+                      objectFit: "cover",
+                    }}
+                  />
 
-                <div className="card-body content">
-                  <div className="text">
-                    <h6 className="title">{img.name}</h6>
+                  <div className="card-body content">
+                    <div className="text">
+                      <h6 className="title">{img.name}</h6>
 
-                    <p className="name">{img.person}</p>
+                      <p className="name">{img.person}</p>
 
-                    <button
-                      className="btn btn-danger"
-                      onClick={() =>
-                        dispatch(
-                          deleteImage({
-                            albumId,
-                            imageId: img._id,
-                          }),
-                        )
-                      }
-                    >
-                      <MdDelete size={25} />
-                    </button>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() =>
+                          dispatch(
+                            deleteImage({
+                              albumId,
+                              imageId: img._id,
+                            }),
+                          )
+                        }
+                      >
+                        <MdDelete size={25} />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))
+          )}
         </div>
       </div>
     </div>
