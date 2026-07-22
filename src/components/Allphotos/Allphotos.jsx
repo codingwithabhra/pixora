@@ -11,6 +11,7 @@ import { fetchAlbums } from "../gallery/albumSlice";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import DisplayAllImages from "./DisplayAllImages";
 import { toast } from "react-toastify";
+import { IoIosSearch } from "react-icons/io";
 
 const Allphotos = () => {
   const [showUploadModal, setShowUploadModal] = useState(false);
@@ -20,6 +21,7 @@ const Allphotos = () => {
   const [tags, setTags] = useState("");
   const [person, setPerson] = useState("");
   const [isFavourite, setIsFavourite] = useState(false);
+  const [searchTag, setSearchTag] = useState("");
 
   const dispatch = useDispatch();
 
@@ -30,73 +32,90 @@ const Allphotos = () => {
 
   const { images } = useSelector((state) => state.images);
   const { albums } = useSelector((state) => state.albums);
-  console.log('all photos', images);
-  
+  console.log("all photos", images);
 
-  const handleImageUpload = (e) => {
-    setImage(e.target.files[0]);
-  };
+  const filteredImages = images.filter((image) => {
+    // Show all images if search box is empty
+    if (!searchTag.trim()) return true;
 
-  const handleUpload = async () => {
-    if (!image) {
-      toast.error("Please select an image");
-      return;
-    }
-
-    if (!selectedAlbum) {
-      toast.error("Please select an album");
-      return;
-    }
-
-    const formData = new FormData();
-
-    formData.append("image", image);
-    formData.append("tags", tags);
-    formData.append("person", person);
-    formData.append("isFavourite", isFavourite);
-
-    const result = await dispatch(
-      uploadImage({
-        albumId: selectedAlbum,
-        formData,
-      }),
+    return image.tags?.some((tag) =>
+      tag.toLowerCase().includes(searchTag.toLowerCase().trim()),
     );
+  });
 
-    dispatch(fetchAllImages());
+  // const handleImageUpload = (e) => {
+  //   setImage(e.target.files[0]);
+  // };
 
-    if (uploadImage.fulfilled.match(result)) {
-      toast.success("Image uploaded successfully");
+  // const handleUpload = async () => {
+  //   if (!image) {
+  //     toast.error("Please select an image");
+  //     return;
+  //   }
 
-      setImage(null);
-      setSelectedAlbum("");
-      setTags("");
-      setPerson("");
-      setIsFavourite(false);
+  //   if (!selectedAlbum) {
+  //     toast.error("Please select an album");
+  //     return;
+  //   }
 
-      dispatch(fetchAllMyPhotos());
-      setShowUploadModal(false);
-    } else {
-      toast.error("Image upload failed");
-    }
-  };
+  //   const formData = new FormData();
+
+  //   formData.append("image", image);
+  //   formData.append("tags", tags);
+  //   formData.append("person", person);
+  //   formData.append("isFavourite", isFavourite);
+
+  //   const result = await dispatch(
+  //     uploadImage({
+  //       albumId: selectedAlbum,
+  //       formData,
+  //     }),
+  //   );
+
+  //   dispatch(fetchAllImages());
+
+  //   if (uploadImage.fulfilled.match(result)) {
+  //     toast.success("Image uploaded successfully");
+
+  //     setImage(null);
+  //     setSelectedAlbum("");
+  //     setTags("");
+  //     setPerson("");
+  //     setIsFavourite(false);
+
+  //     dispatch(fetchAllMyPhotos());
+  //     setShowUploadModal(false);
+  //   } else {
+  //     toast.error("Image upload failed");
+  //   }
+  // };
 
   return (
     <div className="allPhotos">
-      <div className="header d-flex justify-content-between align-items-center">
+      <div className="header photos-header">
         <h1 className="text-white fw-bold mt-2">All Photos</h1>
 
-        <button
-          className="btn btn-light"
-          onClick={() => setShowUploadModal(true)}
-        >
-          <IoCloudUploadOutline size={22} />
-          <span className="ms-2 d-none d-sm-inline">Upload Photo</span>
-        </button>
+        <div className="search-container">
+          <div className="input-group search-box">
+            <input
+              type="text"
+              className="form-control search-input"
+              placeholder="Search by tag..."
+              aria-label="Username"
+              aria-describedby="addon-wrapping"
+              value={searchTag}
+              onChange={(e) => setSearchTag(e.target.value)}
+            />
+            <span className="input-group-text search-icon">
+              <IoIosSearch size={25} />
+            </span>
+          </div>
+        </div>
       </div>
       <hr style={{ color: "white", height: "1px" }} />
 
       {/* SHOW MODAL */}
-      {showUploadModal && (
+      {/* {showUploadModal && (
         <div className="modal d-block">
           <div className="modal-dialog">
             <div className="modal-content">
@@ -170,10 +189,10 @@ const Allphotos = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       <div className="photos-scroll">
-        <DisplayAllImages />
+        <DisplayAllImages images={filteredImages}/>
       </div>
     </div>
   );

@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllMyPhotos } from "../albumdetails/imageSlice";
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchAllMyPhotos } from "../albumdetails/imageSlice";
 import { Link } from "react-router-dom";
 import "./Allphotos.css";
 
-const DisplayAllImages = () => {
-  const dispatch = useDispatch();
+const DisplayAllImages = ({ images }) => {
+  // const dispatch = useDispatch();
 
-  const { images, status } = useSelector((state) => state.images);
+  // const { images, status } = useSelector((state) => state.images);
 
-  useEffect(() => {
-    dispatch(fetchAllMyPhotos());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchAllMyPhotos());
+  // }, [dispatch]);
 
   if (status === "loading") {
     return (
