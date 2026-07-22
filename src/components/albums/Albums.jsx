@@ -11,13 +11,21 @@ import {
   fetchAlbums,
   createAlbums,
   deleteAlbumById,
+  updateAlbumById,
 } from "../gallery/albumSlice";
+import { MdEdit } from "react-icons/md";
+import { PiDotsThreeCircleVerticalLight } from "react-icons/pi";
 
 const Albums = () => {
   const [showModal, setShowModal] = useState(false);
 
   const [albumName, setAlbumName] = useState("");
   const [albumDescription, setAlbumDescription] = useState("");
+
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedAlbum, setSelectedAlbum] = useState(null);
+  const [editDescription, setEditDescription] = useState("");
+  const [openMenuId, setOpenMenuId] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -26,6 +34,25 @@ const Albums = () => {
   useEffect(() => {
     dispatch(fetchAlbums());
   }, [dispatch]);
+
+  //to close three dot menu on clicking outside
+  useEffect(() => {
+    const closeMenu = () => {
+      setOpenMenuId(null);
+    };
+
+    window.addEventListener("click", closeMenu);
+
+    return () => {
+      window.removeEventListener("click", closeMenu);
+    };
+  }, []);
+
+  const openEditModal = (album) => {
+    setSelectedAlbum(album);
+    setEditDescription(album.description || "");
+    setShowEditModal(true);
+  };
 
   const createAlbum = async () => {
     const result = await dispatch(
@@ -44,6 +71,7 @@ const Albums = () => {
     }
   };
 
+  //delete album
   const handleDeleteAlbum = async (id, name) => {
     const result = await dispatch(deleteAlbumById(id));
 
@@ -51,6 +79,29 @@ const Albums = () => {
       toast.success(`Album "${name}" deleted successfully`);
     } else {
       toast.error(result.error.message || "Failed to delete album");
+    }
+  };
+
+  //update album description
+  const handleUpdateDescription = async () => {
+    const result = await dispatch(
+      updateAlbumById({
+        id: selectedAlbum._id,
+        updatedData: {
+          description: editDescription,
+        },
+      }),
+    );
+    if (updateAlbumById.fulfilled.match(result)) {
+      toast.success("Description updated");
+
+      setShowEditModal(false);
+      setSelectedAlbum(null);
+
+      // await dispatch(updateAlbumById(id, updatedData));
+      await dispatch(fetchAlbums());
+    } else {
+      toast.error("Failed to update description");
     }
   };
 
@@ -113,13 +164,15 @@ const Albums = () => {
         <div className="albums col-12 mt-4 ">
           <div className="row">
             {albums.length === 0 ? (
-              <p className="text-white text-center mt-3 fs-4">No album found.</p>
+              <p className="text-white text-center mt-3 fs-4">
+                No album found.
+              </p>
             ) : (
               albums.map((album) => (
                 <Link
                   key={album._id}
                   to={`/albums/${album._id}`}
-                  className="col-md-6 mb-4 text-decoration-none"
+                  className="col-lg-4 col-md-4 col-sm-6 col-12 mb-4 text-decoration-none"
                 >
                   <div className="card album-card h-100">
                     {/* Preview Images */}
@@ -161,17 +214,52 @@ const Albums = () => {
                           <h5>{album.name}</h5>
                           <p className="fw-regular">{album.description}</p>
                         </div>
-                        <div className="right">
+
+                        {/* three dot menu */}
+                        <div className="right position-relative">
                           <button
-                            className="btn btn-outline-danger"
+                            className="p-0 border-0 bg-transparent"
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
-                              handleDeleteAlbum(album._id, album.name);
+
+                              setOpenMenuId(
+                                openMenuId === album._id ? null : album._id,
+                              );
                             }}
                           >
-                            <MdDelete size={20} />
+                            <PiDotsThreeCircleVerticalLight size={30} className="text-white"/>
                           </button>
+
+                          {openMenuId === album._id && (
+                            <div
+                              className="album-menu"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                              }}
+                            >
+                              <button
+                                className="dropdown-item mb-0"
+                                onClick={() => {
+                                  openEditModal(album);
+                                  setOpenMenuId(null);
+                                }}
+                              >
+                                <span><MdEdit /></span> Edit Description
+                              </button>
+
+                              <button
+                                className="dropdown-item text-danger mb-0"
+                                onClick={() => {
+                                  handleDeleteAlbum(album._id, album.name);
+                                  setOpenMenuId(null);
+                                }}
+                              >
+                                <MdDelete /> Delete Album
+                              </button>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -182,6 +270,44 @@ const Albums = () => {
           </div>
         </div>
       </div>
+
+      {/* MODAL FOR DESCRIPTION UPDATE */}
+      {showEditModal && (
+        <div className="modal d-block">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5>Edit Description</h5>
+              </div>
+
+              <div className="modal-body">
+                <textarea
+                  className="form-control"
+                  rows="5"
+                  value={editDescription}
+                  onChange={(e) => setEditDescription(e.target.value)}
+                />
+              </div>
+
+              <div className="modal-footer">
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => setShowEditModal(false)}
+                >
+                  Cancel
+                </button>
+
+                <button
+                  className="btn btn-primary"
+                  onClick={handleUpdateDescription}
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

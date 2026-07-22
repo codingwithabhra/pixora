@@ -85,7 +85,7 @@ const SideNav = () => {
                   <span>
                     <RiFolderSharedLine />
                   </span>
-                  Shared Albums
+                  Share album
                 </Link>
               </li>
               <li>
