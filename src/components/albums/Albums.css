@@ -10,6 +10,7 @@
 
     transition: all .25s ease;
     overflow: visible!important;
+    z-index: 1;
 }
 
 .album-card:hover {
@@ -128,7 +129,12 @@
     color: #ff6b6b !important;
 }
 
-/*-------heading and description size-------*/
-.album .cardHeader h5{
-    font-size: 10px!important;
+@media (max-width:768px){
+
+    .album-menu{
+        top:auto;
+        bottom:100%;
+        right:0;
+        margin-bottom:8px;
+    }
 }

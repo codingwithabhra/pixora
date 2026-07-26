@@ -1,0 +1,64 @@
+.featureList .swiper {
+  width: 80%;
+}
+
+.featureList .swiper-slide {
+  text-align: center;
+  height: 250px;
+  background: transparent;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.featureList .swiper-slide img {
+  display: block;
+  width: 120px!important;
+  height: 110px!important;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.feature-button{
+  padding: 5px 11px;
+  background-color: cornflowerblue;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.swiper-button-next{
+  color: #000!important;
+  background: rgba(255, 255, 255, 0.601);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Safari */
+  font-size: 15px;
+  padding: 10px 5px;
+  border-radius: 50%;
+  font-weight: bold;
+  position: absolute!important;
+  right: -20px!important;
+  overflow: visible!important;
+}
+
+.swiper-button-prev{
+  color: #000!important;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Safari */
+  font-size: 15px;
+  padding: 10px 5px;
+  border-radius: 50%;
+  font-weight: bold;
+  position: absolute!important;
+  left: -20px!important;
+  overflow: visible!important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px;
+}
