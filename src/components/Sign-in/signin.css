@@ -19,13 +19,17 @@
 }
 
 .signinBg .header {
-    margin: 100px 0 20px 0;
+    margin: 50px 0 20px 0;
     display: flex;
     justify-content: space-around;
 }
 
 .logo {
     max-width: 150px;
+}
+
+.logInBtn {
+    margin: 50px 0 15px 0;
 }
 
 .google {
@@ -51,10 +55,25 @@
 }
 
 .tagline h1 {
-    font-size: 4rem;
+    font-size: 3.7rem;
     color: white;
     font-weight: 900;
-    margin: 10px 0 25px 0;
+    margin: 10px 0 22px 0;
+}
+
+.tagline h1::after {
+    content: "";
+    display: block;
+    width: 10%;
+    height: 5px;
+    background-color: white;
+    padding: 2px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.taglineText p {
+    max-width: 72%;
 }
 
 /*-----------------RESPONSIVE---------------*/
@@ -88,24 +107,8 @@
 
     .tagline h1 {
         font-size: 2.4rem;
-        margin: 10px 0 10px 0;
-    }
-
-    .signinBg .header {
-        margin: 70px 0 20px 0;
-    }
-
-    .google {
-        max-width: 45%;
-    }
-}
-
-@media (max-width: 576px) {
-
-    .tagline h1 {
-        font-size: 2.4rem;
-        margin: 18px 0 18px 0;
         text-align: center;
+        margin: 12px 0 15px 0;
     }
 
     .signinBg .header {
@@ -114,7 +117,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 40px;
+        gap: 30px;
     }
 
     .tagline {
@@ -129,6 +132,37 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    .tagline h1::after {
+        display: block;
+        margin: auto;
+        width: 20%;
+        margin-top: 15px;
+    }
+
+    .taglineText p {
+        max-width: 95%;
+        text-align: center;
+        margin-bottom: 0;
+        font-size: 0.8rem;
+    }
+
+    .google {
+        max-width: 40%;
+    }
+
+    .logInBtn {
+        margin: 30px 0 15px 0;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .tagline h1 {
+        font-size: 2.4rem;
+        margin: 18px 0 18px 0;
+        text-align: center;
     }
 
     .google {
@@ -157,5 +191,25 @@
 
     .google {
         max-width: 58%;
+    }
+
+    .taglineText p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .tagline h1 {
+        font-size: 1.8rem;
+        margin: 18px 0 18px 0;
+        text-align: center;
+    }
+
+    .google {
+        max-width: 60%;
+    }
+
+    .taglineText p {
+        font-size: 0.7rem;
     }
 }
