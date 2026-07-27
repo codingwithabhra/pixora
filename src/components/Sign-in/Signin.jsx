@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./signin.css";
-import ImageSlider from "./imageslider/imageSlider";
+import ImageSlider from "./imageslider/ImageSlider";
 import TopContent from "./Top-content/TopContent";
 import FeatureList from "./FeatureList";
 
