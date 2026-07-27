@@ -28,7 +28,7 @@ const Signin = () => {
         </div>
 
         {/* FEATURE LIST SECTION */}
-        <div className="animate__animated animate__slideInUp">
+        <div className="featureListWrapper animate__animated animate__slideInUp">
           <FeatureList />
         </div>
       </div>

@@ -76,6 +76,10 @@
     max-width: 72%;
 }
 
+.featureListWrapper {
+    display: block;
+}
+
 /*-----------------RESPONSIVE---------------*/
 @media (max-width: 1000px) {
 
@@ -155,6 +159,7 @@
     .logInBtn {
         margin: 30px 0 15px 0;
     }
+
 }
 
 @media (max-width: 576px) {
@@ -167,6 +172,14 @@
 
     .google {
         max-width: 58%;
+    }
+
+    .featureListWrapper {
+        display: none;
+    }
+
+    .tagline{
+        margin: 10px 3px;
     }
 }
 
