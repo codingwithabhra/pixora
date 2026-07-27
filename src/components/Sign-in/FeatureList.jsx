@@ -18,7 +18,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { FreeMode, Pagination, Navigation } from "swiper/modules";
+import { FreeMode, Pagination, Navigation, Autoplay } from "swiper/modules";
 
 const FeatureList = () => {
   return (
@@ -28,9 +28,10 @@ const FeatureList = () => {
         spaceBetween={30}
         loop={true}
         freeMode={true}
-        // pagination={{
-        //   clickable: true,
-        // }}
+        autoplay={{
+          delay: 3000, // 3 seconds
+          disableOnInteraction: false,
+        }}
         navigation={true}
         modules={[FreeMode, Pagination, Navigation]}
         breakpoints={{

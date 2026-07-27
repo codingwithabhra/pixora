@@ -15,14 +15,14 @@
 
 .featureList .swiper-slide img {
   display: block;
-  width: 120px!important;
+  width: 140px!important;
   height: 110px!important;
   object-fit: cover;
   border-radius: 5px;
 }
 
 .feature-button{
-  padding: 5px 11px;
+  padding: 6px 17px;
   background-color: cornflowerblue;
   color: #fff;
   border-radius: 5px;
@@ -40,7 +40,7 @@
   border-radius: 50%;
   font-weight: bold;
   position: absolute!important;
-  right: -20px!important;
+  right: 0px!important;
   overflow: visible!important;
 }
 
@@ -54,7 +54,7 @@
   border-radius: 50%;
   font-weight: bold;
   position: absolute!important;
-  left: -20px!important;
+  left: 0px!important;
   overflow: visible!important;
 }
 
